@@ -4,5 +4,35 @@
         <name>ZY.FBG.Engine</name>
     </assembly>
     <members>
+        <member name="M:ZY.FBG.Engine.GameEngine.SetGameTime(System.Int32)">
+            <summary>
+            设置比赛时间
+            </summary>
+            <param name="gameTimeOfMiniutes"></param>
+        </member>
+        <member name="M:ZY.FBG.Engine.GameEngine.Start">
+            <summary>
+            开始比赛
+            </summary>
+        </member>
+        <member name="M:ZY.FBG.Engine.GameEngine.RunGame">
+            <summary>
+            运行游戏
+            </summary>
+        </member>
+        <member name="M:ZY.FBG.Engine.GameEngine.ToSecond(System.Int32)">
+            <summary>
+            分钟转化为秒
+            </summary>
+            <param name="minute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZY.FBG.Engine.GameEngine.FormateTime(System.DateTime)">
+            <summary>
+            将分钟：秒钟格式化为00：00形式
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
