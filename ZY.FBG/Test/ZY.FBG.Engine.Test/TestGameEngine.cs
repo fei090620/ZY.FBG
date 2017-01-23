@@ -30,20 +30,23 @@ namespace ZY.FBG.Engine.Test
             //比赛开始后，状态为Ining
             Assert.IsTrue(_engine.Status == GameStatus.Inning);
 
-            Thread.Sleep(_engine.GameTime);
+            //模拟线程运行时间1分钟零10毫秒
+            Thread.Sleep(_engine.GameTimePeriod * 1000 * 60 + 10);
 
             //比赛时间过去后，状态为Over
             Assert.IsTrue(_engine.Status == GameStatus.Over);
         }
 
         [TestMethod]
-        public void Test_GameEnd()
+        public void Test_SetGameTimeWhenGameRunning()
         {
+            _engine.Start();
 
+            //比赛开始后，状态为Ining
+            Assert.IsTrue(_engine.Status == GameStatus.Inning);
+
+            //比赛进行中修改比赛时间
+            _engine.SetGameTime(2);
         }
-
-        [TestMethod]
-        public void Test_Update()
-        { }
     }
 }

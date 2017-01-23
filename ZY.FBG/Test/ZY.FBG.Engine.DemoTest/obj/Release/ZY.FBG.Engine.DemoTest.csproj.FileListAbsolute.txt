@@ -1,0 +1,8 @@
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Release\ZY.FBG.Engine.DemoTest.exe.config
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Release\ZY.FBG.Engine.DemoTest.exe
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Release\ZY.FBG.Engine.DemoTest.pdb
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Release\ZY.FBG.Engine.dll
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Release\ZY.FBG.Engine.pdb
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Release\ZY.FBG.Engine.DemoTest.csprojResolveAssemblyReference.cache
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Release\ZY.FBG.Engine.DemoTest.exe
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Release\ZY.FBG.Engine.DemoTest.pdb
