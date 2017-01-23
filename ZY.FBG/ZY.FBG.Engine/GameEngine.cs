@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 
-
-
 namespace ZY.FBG.Engine
 {
     public class GameEngine
@@ -14,6 +12,7 @@ namespace ZY.FBG.Engine
         public GameStatus Status { get; private set; }
         public int GameTimePeriod { get; private set; }
         public string GameTime { get; private set; }
+        public event EventHandler<GameTimeEventArgs> GameTimeChanged;
         private DateTime _time;
         private Timer _timer;
         private DateTime _endTime;
@@ -76,6 +75,7 @@ namespace ZY.FBG.Engine
                 //每一秒更新一次
                 _time = _time.AddSeconds(1);
                 GameTime = FormateTime(_time);
+                OnGameTimeChanged(new GameTimeEventArgs(GameTime));
                 Debug.WriteLine(GameTime);
             }
 
@@ -83,6 +83,16 @@ namespace ZY.FBG.Engine
 
             //添加更新球员状态
 
+        }
+
+        /// <summary>
+        /// 比赛时间更新触发器
+        /// </summary>
+        /// <param name="e"></param>
+        private void OnGameTimeChanged(GameTimeEventArgs e)
+        {
+            var temp = Volatile.Read(ref GameTimeChanged);
+            if (temp != null) temp(null, e);             
         }
 
         /// <summary>

@@ -38,6 +38,7 @@ namespace ZY.FBG.Engine.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ThreadInterruptedException))]
         public void Test_SetGameTimeWhenGameRunning()
         {
             _engine.Start();
