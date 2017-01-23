@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZY.FBG.Engine.Test", "Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZY.FBG.Engine", "ZY.FBG.Engine\ZY.FBG.Engine.csproj", "{EA5E39EA-D5CE-4C71-9232-E373699A2BAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZY.FBG.Engine.DemoTest", "Test\ZY.FBG.Engine.DemoTest\ZY.FBG.Engine.DemoTest.csproj", "{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +31,16 @@ Global
 		{EA5E39EA-D5CE-4C71-9232-E373699A2BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA5E39EA-D5CE-4C71-9232-E373699A2BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA5E39EA-D5CE-4C71-9232-E373699A2BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{455BA67D-6D1C-46C4-B6FB-90CA3ADBF726} = {59584B30-74AD-4565-AC7F-02983593C281}
+		{CFF9FBCF-13C2-4945-8B2F-2FCF51E43D3C} = {59584B30-74AD-4565-AC7F-02983593C281}
 	EndGlobalSection
 EndGlobal
