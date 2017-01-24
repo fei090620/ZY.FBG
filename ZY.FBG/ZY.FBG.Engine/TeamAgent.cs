@@ -11,6 +11,6 @@ namespace ZY.FBG.Engine
     /// </summary>
     public class TeamAgent
     {
-        public 
+       
     }
 }
