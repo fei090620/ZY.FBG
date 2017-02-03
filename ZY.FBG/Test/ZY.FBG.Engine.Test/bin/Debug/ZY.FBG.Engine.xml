@@ -20,6 +20,12 @@
             运行游戏
             </summary>
         </member>
+        <member name="M:ZY.FBG.Engine.GameEngine.GameTimeChanged(ZY.FBG.Engine.GameTimeEventArgs)">
+            <summary>
+            比赛时间更新触发器
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="M:ZY.FBG.Engine.GameEngine.ToSecond(System.Int32)">
             <summary>
             分钟转化为秒
@@ -33,6 +39,16 @@
             </summary>
             <param name="time"></param>
             <returns></returns>
+        </member>
+        <member name="T:ZY.FBG.Engine.PlayerAgent">
+            <summary>
+            球员Agent
+            </summary>
+        </member>
+        <member name="T:ZY.FBG.Engine.TeamAgent">
+            <summary>
+            球队Agent
+            </summary>
         </member>
     </members>
 </doc>
