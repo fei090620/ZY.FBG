@@ -5,8 +5,9 @@ namespace ZY.FBG.Engine
     /// <summary>
     /// 命令接口
     /// </summary>
-    public interface ICommand : IComparable
+    public interface ICommand<TAgentStatus> 
+        where TAgentStatus : GameEventArgs
     {
-
+        void UpdateStatus(TAgentStatus newStatus);
     }
 }

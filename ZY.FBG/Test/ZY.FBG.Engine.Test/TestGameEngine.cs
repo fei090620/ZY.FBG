@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZY.FBG.Engine;
 using System.Threading;
+using ADCC.Common.Datas;
 
 namespace ZY.FBG.Engine.Test
 {
@@ -49,6 +50,14 @@ namespace ZY.FBG.Engine.Test
 
             //比赛进行中修改比赛时间
             _engine.SetGameTime(2);
+        }
+
+        [TestMethod]
+        public void Test_when_game_run_then_update_soccer_status()
+        {
+            SoccerAgent soccer = SoccerAgent.Instance;
+            _engine.Start();
+            Assert.AreNotEqual(soccer.Pos, new Point3D(0,0,0));
         }
     }
 }

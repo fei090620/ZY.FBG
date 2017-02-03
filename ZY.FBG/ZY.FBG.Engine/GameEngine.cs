@@ -12,7 +12,7 @@ namespace ZY.FBG.Engine
         public GameStatus Status { get; private set; }
         public int GameTimePeriod { get; private set; }
         public string GameTime { get; private set; }
-        public event EventHandler<GameTimeEventArgs> OnGameTimeChanged;
+        public event EventHandler<GameEventArgs> OnGameTimeChanged;
         private DateTime _time;
         private Timer _timer;
         private DateTime _endTime;
@@ -77,20 +77,15 @@ namespace ZY.FBG.Engine
             }
 
             GameTime = FormateTime(_time);
-            GameTimeChanged(new GameTimeEventArgs(GameTime));
+            GameTimeChanged(new GameEventArgs(GameTime));
             Debug.WriteLine(GameTime);
-
-            //添加更新球队状态
-
-            //添加更新球员状态
-
         }
 
         /// <summary>
         /// 比赛时间更新触发器
         /// </summary>
         /// <param name="e"></param>
-        private void GameTimeChanged(GameTimeEventArgs e)
+        private void GameTimeChanged(GameEventArgs e)
         {
             var temp = Volatile.Read(ref OnGameTimeChanged);
             if (temp != null) temp(null, e);             

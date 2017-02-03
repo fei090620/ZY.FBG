@@ -40,9 +40,19 @@
             <param name="time"></param>
             <returns></returns>
         </member>
+        <member name="T:ZY.FBG.Engine.ICommand">
+            <summary>
+            命令接口
+            </summary>
+        </member>
         <member name="T:ZY.FBG.Engine.PlayerAgent">
             <summary>
             球员Agent
+            </summary>
+        </member>
+        <member name="T:ZY.FBG.Engine.SoccerAgent">
+            <summary>
+            足球Agent
             </summary>
         </member>
         <member name="T:ZY.FBG.Engine.TeamAgent">
