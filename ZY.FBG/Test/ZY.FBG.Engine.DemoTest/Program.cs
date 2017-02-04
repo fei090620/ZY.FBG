@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using ZY.FBG.Engine.Agents;
 
 namespace ZY.FBG.Engine.DemoTest
 {
@@ -13,13 +8,13 @@ namespace ZY.FBG.Engine.DemoTest
     {
         static void Main(string[] args)
         {
-            //GameEngine g = GameEngine.Instance;
-            //g.SetGameTime(1);
-            //g.Start();f
-            //Thread.Sleep(2000);
-            //g.SetGameTime(2);
-            //g.Start();
-            Console.WriteLine(GCSettings.IsServerGC);
+            GameEngine g = GameEngine.Instance;
+            g.SetGameTime(1);
+            SoccerAgent soccer = SoccerAgent.CreateNew("11");
+            g.Start();
+            Thread.Sleep(1000 * 10);
+           
+
             Console.ReadKey();
         }
     }

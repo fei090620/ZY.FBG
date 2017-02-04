@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
+using ZY.FBG.Engine.Events;
 
 namespace ZY.FBG.Engine
 {
@@ -79,11 +80,6 @@ namespace ZY.FBG.Engine
             GameTime = FormateTime(_time);
             GameTimeChanged(new GameTimeEventArgs(GameTime));
             Debug.WriteLine(GameTime);
-
-            //添加更新球队状态
-
-            //添加更新球员状态
-
         }
 
         /// <summary>

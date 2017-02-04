@@ -35,6 +35,9 @@
     <CodeAnalysisRuleSet>ZY.FBG.Engine.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ADCC.Common">
+      <HintPath>..\package\ADCC.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,17 +48,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\IAggregateRoot.cs" />
+    <Compile Include="Agents\IChangeMovementStatus.cs" />
+    <Compile Include="Agents\IDomian.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Command\CommadBus.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\ShootCommand.cs" />
+    <Compile Include="Command\ShootCommandExecuter.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameStatus.cs" />
-    <Compile Include="GameTimeEventArgs.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="PlayerAgent.cs" />
+    <Compile Include="Events\GameTimeEventArgs.cs" />
+    <Compile Include="Command\ICommandExecuter.cs" />
+    <Compile Include="Agents\PlayerAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamAgent.cs" />
+    <Compile Include="Agents\SoccerAgent.cs" />
+    <Compile Include="Agents\MovementStatus.cs" />
+    <Compile Include="Agents\TeamAgent.cs" />
+    <Compile Include="Repository\PlayerReposority.cs" />
+    <Compile Include="Repository\SoccerRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ZY.FBG.Engine.ruleset" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

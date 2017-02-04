@@ -6,3 +6,4 @@ D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.Test\bin\Debug\ZY.FBG.Eng
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.Test\obj\Debug\ZY.FBG.Engine.Test.csprojResolveAssemblyReference.cache
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.Test\obj\Debug\ZY.FBG.Engine.Test.dll
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.Test\obj\Debug\ZY.FBG.Engine.Test.pdb
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.Test\bin\Debug\ADCC.Common.dll
