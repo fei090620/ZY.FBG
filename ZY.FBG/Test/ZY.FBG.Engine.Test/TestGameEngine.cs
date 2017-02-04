@@ -24,19 +24,19 @@ namespace ZY.FBG.Engine.Test
         public void Test_GameStart()
         {
             //比赛没开始前，状态应该是NoStart
-            Assert.IsTrue(_engine.Status == GameStatus.UnStart);
+            Assert.IsTrue(_engine.Status == ICommand.UnStart);
 
             _engine.Start();
 
             //比赛开始后，状态为Ining
-            Assert.IsTrue(_engine.Status == GameStatus.Inning);
+            Assert.IsTrue(_engine.Status == ICommand.Inning);
 
             //模拟线程运行时间1分钟零100毫秒
             //多线程如何保障线程同步的精准？？
             Thread.Sleep(_engine.GameTimePeriod * 1000 * 60 + 100);
 
             //比赛时间过去后，状态为Over
-            Assert.IsTrue(_engine.Status == GameStatus.Over);
+            Assert.IsTrue(_engine.Status == ICommand.Over);
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace ZY.FBG.Engine.Test
             _engine.Start();
 
             //比赛开始后，状态为Ining
-            Assert.IsTrue(_engine.Status == GameStatus.Inning);
+            Assert.IsTrue(_engine.Status == ICommand.Inning);
 
             //比赛进行中修改比赛时间
             _engine.SetGameTime(2);

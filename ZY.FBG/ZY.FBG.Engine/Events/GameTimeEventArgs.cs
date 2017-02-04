@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ZY.FBG.Engine
+namespace ZY.FBG.Engine.Events
 {
-    public class GameEventArgs : EventArgs
+    public class GameTimeEventArgs : EventArgs
     {
         private readonly string _gameTime;
-        public GameEventArgs(string gameTime)
+        public GameTimeEventArgs(string gameTime)
         {
             _gameTime = gameTime;
         }
@@ -24,7 +20,7 @@ namespace ZY.FBG.Engine
             if (obj == null || !GetType().IsEquivalentTo(obj.GetType()))
                 return false;
 
-            var other = obj as GameEventArgs;
+            var other = obj as GameTimeEventArgs;
             return string.CompareOrdinal(GameTime, other.GameTime) == 0;   
         }
 

@@ -7,4 +7,3 @@ D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Debug\ZY.FBG
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Debug\ZY.FBG.Engine.DemoTest.csprojResolveAssemblyReference.cache
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Debug\ZY.FBG.Engine.DemoTest.exe
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\obj\Debug\ZY.FBG.Engine.DemoTest.pdb
-D:\ADCC.Code\Learning\FBGame\ZY.FBG\Test\ZY.FBG.Engine.DemoTest\bin\Debug\ADCC.Common.dll
