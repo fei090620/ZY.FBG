@@ -25,11 +25,6 @@
             球队Agent
             </summary>
         </member>
-        <member name="T:ZY.FBG.Engine.Command.ICommandExecuter`1">
-            <summary>
-            命令接口
-            </summary>
-        </member>
         <member name="M:ZY.FBG.Engine.GameEngine.SetGameTime(System.Int32)">
             <summary>
             设置比赛时间

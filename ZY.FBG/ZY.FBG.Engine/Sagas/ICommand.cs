@@ -1,4 +1,4 @@
-﻿namespace ZY.FBG.Engine.Command
+﻿namespace ZY.FBG.Engine.Sagas
 {
     public interface ICommand
     {

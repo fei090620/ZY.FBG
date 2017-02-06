@@ -14,7 +14,7 @@ namespace ZY.FBG.Engine.Agents
     /// 但是在构造函数里绑定事件，对于事件的拥有者就必须判断，
     /// 如果注册者都是足球Agent那只能注册一次
     /// </summary>
-    public class SoccerAgent : Domain, IChangeMovementStatus, IAggregateRoot
+    public class SoccerAgent : DomainObject
     {
         private SoccerAgent()
         {
@@ -32,7 +32,7 @@ namespace ZY.FBG.Engine.Agents
 
             SoccerAgent soccer = new SoccerAgent
             {
-                Id = id,
+                ID = id,
                 Status = movementStatus == null ? new MovementStatus(0, 0, null) : movementStatus
             };
 
@@ -47,7 +47,10 @@ namespace ZY.FBG.Engine.Agents
 
         public void UpdateMovementStatus(MovementStatus newMovementStatus)
         {
-            //add code. . .
+            if (newMovementStatus == null)
+                return;
+
+            Status = newMovementStatus;
         }
 
         public MovementStatus Status { get; private set; }

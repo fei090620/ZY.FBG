@@ -19,7 +19,10 @@ namespace ZY.FBG.Engine
 
         public void UpdatePos()
         {
-
+            if (Direction == null || Speed == null)
+                return;
+            
+            Pos = Pos.GetNextPoint((int)Direction, (int)Speed);
         }
 
         public override bool Equals(object obj)
