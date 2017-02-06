@@ -8,7 +8,7 @@ namespace ZY.FBG.Engine.Agents
     /// <summary>
     /// 球员Agent
     /// </summary>
-    public class PlayerAgent : Domain, IChangeMovementStatus, IAggregateRoot
+    public class PlayerAgent : DomainObject
     {
         protected PlayerAgent()
         {
@@ -22,7 +22,7 @@ namespace ZY.FBG.Engine.Agents
 
             PlayerAgent player = new PlayerAgent
             {
-                Id = id,
+                ID = id,
                 Status = movementStatus == null ? new MovementStatus(0,0,null):movementStatus, 
                 TeamID = teamId
             };
@@ -36,12 +36,14 @@ namespace ZY.FBG.Engine.Agents
             Debug.WriteLine("({0},{1},{2})", Status.Pos.X, Status.Pos.Y, Status.Pos.Z);
         }
 
-       
         public MovementStatus Status { get; private set; }
         public string TeamID { get; private set; }
 
         public void UpdateMovementStatus(MovementStatus newMovementStatus)
         {
+            if (newMovementStatus == null)
+                return;
+            
             Status = newMovementStatus;
         }
     }

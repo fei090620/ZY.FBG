@@ -48,25 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agents\IAggregateRoot.cs" />
-    <Compile Include="Agents\IChangeMovementStatus.cs" />
-    <Compile Include="Agents\IDomian.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Command\CommadBus.cs" />
-    <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\ShootCommand.cs" />
-    <Compile Include="Command\ShootCommandExecuter.cs" />
+    <Compile Include="Agents\DomainObject.cs" />
+    <Compile Include="Sagas\Bus.cs" />
+    <Compile Include="Sagas\ChangSoccerMoveStatusEvent.cs" />
+    <Compile Include="Sagas\ICanHandleMessage.cs" />
+    <Compile Include="Sagas\ICommand.cs" />
+    <Compile Include="Sagas\IDomentEvent.cs" />
+    <Compile Include="Sagas\Repository.cs" />
+    <Compile Include="Sagas\SagaBase.cs" />
+    <Compile Include="Sagas\IStartWithMessage.cs" />
+    <Compile Include="Sagas\Message.cs" />
+    <Compile Include="Sagas\ShootCommand.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameStatus.cs" />
     <Compile Include="Events\GameTimeEventArgs.cs" />
-    <Compile Include="Command\ICommandExecuter.cs" />
     <Compile Include="Agents\PlayerAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Agents\SoccerAgent.cs" />
     <Compile Include="Agents\MovementStatus.cs" />
     <Compile Include="Agents\TeamAgent.cs" />
-    <Compile Include="Repository\PlayerReposority.cs" />
-    <Compile Include="Repository\SoccerRepository.cs" />
+    <Compile Include="Sagas\ShootSaga.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ZY.FBG.Engine.ruleset" />
