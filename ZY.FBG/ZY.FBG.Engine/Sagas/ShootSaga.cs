@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using ZY.FBG.Engine.Events;
 
 namespace ZY.FBG.Engine.Sagas
 {
@@ -8,7 +9,6 @@ namespace ZY.FBG.Engine.Sagas
     {
         public void Handle(ShootCommand message)
         {
-            Data = message;
             var cmd = new ChangSoccerMoveStatusEvent(message.SoccerID, message.ShootParameters);
             cmd.ID = message.ID;
             Debug.WriteLine("Saga is started by shoot command!");

@@ -1,4 +1,6 @@
-﻿namespace ZY.FBG.Engine.Sagas
+﻿using ZY.FBG.Engine.Events;
+
+namespace ZY.FBG.Engine.Sagas
 {
     public class SagaBase<TMessage> where TMessage : Message
     {
@@ -8,7 +10,6 @@
         }
 
         public string ID { get; set; }
-        public Message Data { get; set; }
         protected bool _isCompleted = false;
         protected Repository _repository;
         public bool IsComplete()

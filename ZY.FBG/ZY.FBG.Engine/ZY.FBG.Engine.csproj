@@ -49,19 +49,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\DomainObject.cs" />
-    <Compile Include="Sagas\Bus.cs" />
+    <Compile Include="Events\Bus.cs" />
     <Compile Include="Sagas\ChangSoccerMoveStatusEvent.cs" />
-    <Compile Include="Sagas\ICanHandleMessage.cs" />
-    <Compile Include="Sagas\ICommand.cs" />
-    <Compile Include="Sagas\IDomentEvent.cs" />
-    <Compile Include="Sagas\Repository.cs" />
+    <Compile Include="Events\ICanHandleMessage.cs" />
+    <Compile Include="Events\ICommand.cs" />
+    <Compile Include="Events\IDomentEvent.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Sagas\SagaBase.cs" />
-    <Compile Include="Sagas\IStartWithMessage.cs" />
-    <Compile Include="Sagas\Message.cs" />
+    <Compile Include="Events\IStartWithMessage.cs" />
+    <Compile Include="Events\Message.cs" />
     <Compile Include="Sagas\ShootCommand.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameStatus.cs" />
-    <Compile Include="Events\GameTimeEventArgs.cs" />
+    <Compile Include="GameTimeEventArgs.cs" />
     <Compile Include="Agents\PlayerAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Agents\SoccerAgent.cs" />

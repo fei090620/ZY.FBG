@@ -1,4 +1,6 @@
-﻿namespace ZY.FBG.Engine.Sagas
+﻿using ZY.FBG.Engine.Events;
+
+namespace ZY.FBG.Engine.Sagas
 {
     public class ShootCommand : Message, ICommand
     {

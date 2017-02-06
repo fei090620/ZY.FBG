@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ZY.FBG.Engine.Sagas
+namespace ZY.FBG.Engine.Events
 {
     public class Bus
     {
@@ -43,7 +43,6 @@ namespace ZY.FBG.Engine.Sagas
                 //启动后保存saga实例，后续备用
                 SagaInstance.Add(message.ID, instance);
                 instance.Handle(message);
-
                 return;
             }
 
@@ -56,9 +55,7 @@ namespace ZY.FBG.Engine.Sagas
 
                 //完成后保存或者移除saga
                 if (saga.IsComplete())
-                {
                     SagaInstance.Remove(message.ID);
-                }
                 else
                     SagaInstance[message.ID] = saga;
             }
