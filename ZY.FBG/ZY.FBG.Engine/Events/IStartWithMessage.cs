@@ -1,4 +1,4 @@
-﻿namespace ZY.FBG.Engine.Sagas
+﻿namespace ZY.FBG.Engine.Events
 {
     public interface IStartWithMessage<TMessage> where TMessage : Message
     {
