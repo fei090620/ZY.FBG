@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZY.FBG.Engine;
 using System.Threading;
 using ADCC.Common.Datas;
+using ZY.FBG.Engine.Agents;
 
 namespace ZY.FBG.Engine.Test
 {
@@ -24,19 +25,19 @@ namespace ZY.FBG.Engine.Test
         public void Test_GameStart()
         {
             //比赛没开始前，状态应该是NoStart
-            Assert.IsTrue(_engine.Status == ICommand.UnStart);
+            Assert.IsTrue(_engine.Status == GameStatus.UnStart);
 
             _engine.Start();
 
             //比赛开始后，状态为Ining
-            Assert.IsTrue(_engine.Status == ICommand.Inning);
+            Assert.IsTrue(_engine.Status == GameStatus.Inning);
 
             //模拟线程运行时间1分钟零100毫秒
             //多线程如何保障线程同步的精准？？
             Thread.Sleep(_engine.GameTimePeriod * 1000 * 60 + 100);
 
             //比赛时间过去后，状态为Over
-            Assert.IsTrue(_engine.Status == ICommand.Over);
+            Assert.IsTrue(_engine.Status == GameStatus.Over);
         }
 
         [TestMethod]
@@ -46,7 +47,7 @@ namespace ZY.FBG.Engine.Test
             _engine.Start();
 
             //比赛开始后，状态为Ining
-            Assert.IsTrue(_engine.Status == ICommand.Inning);
+            Assert.IsTrue(_engine.Status == GameStatus.Inning);
 
             //比赛进行中修改比赛时间
             _engine.SetGameTime(2);
@@ -55,9 +56,9 @@ namespace ZY.FBG.Engine.Test
         [TestMethod]
         public void Test_when_game_run_then_update_soccer_status()
         {
-            SoccerAgent soccer = SoccerAgent.Instance;
+            SoccerAgent soccer = SoccerAgent.CreateNew(Guid.NewGuid().ToString());
             _engine.Start();
-            Assert.AreNotEqual(soccer.Pos, new Point3D(0,0,0));
+            Assert.AreNotEqual(soccer.Status.Pos, new Point3D(0,0,0));
         }
     }
 }
