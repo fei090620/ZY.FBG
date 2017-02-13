@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\DomainObject.cs" />
+    <Compile Include="Agents\PlayGroundAgent.cs" />
     <Compile Include="Events\Bus.cs" />
     <Compile Include="Sagas\ChangSoccerMoveStatusEvent.cs" />
     <Compile Include="Events\ICanHandleMessage.cs" />
