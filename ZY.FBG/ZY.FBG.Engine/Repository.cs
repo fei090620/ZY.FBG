@@ -44,5 +44,23 @@ namespace ZY.FBG.Engine.Sagas
             if (domainObject is TeamAgent && !_teams.ContainsKey(domainObject.ID))
                 _teams.Add(domainObject.ID, domainObject as TeamAgent);
         }
+
+        public void Update(DomainObject newDomainObject)
+        {
+            if (newDomainObject == null)
+                return;
+
+            if (newDomainObject is SoccerAgent
+                && _soccers.ContainsKey(newDomainObject.ID))
+                _soccers[newDomainObject.ID] = newDomainObject as SoccerAgent;
+
+            if (newDomainObject is PlayerAgent
+                && _players.ContainsKey(newDomainObject.ID))
+                _players[newDomainObject.ID] = newDomainObject as PlayerAgent;
+
+            if (newDomainObject is TeamAgent
+                && _teams.ContainsKey(newDomainObject.ID))
+                _teams[newDomainObject.ID] = newDomainObject as TeamAgent;
+        }
     }
 }

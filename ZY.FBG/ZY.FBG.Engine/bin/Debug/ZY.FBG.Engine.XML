@@ -41,7 +41,7 @@
             运行游戏
             </summary>
         </member>
-        <member name="M:ZY.FBG.Engine.GameEngine.GameTimeChanged(ZY.FBG.Engine.Events.GameTimeEventArgs)">
+        <member name="M:ZY.FBG.Engine.GameEngine.GameTimeChanged(ZY.FBG.Engine.GameTimeEventArgs)">
             <summary>
             比赛时间更新触发器
             </summary>
