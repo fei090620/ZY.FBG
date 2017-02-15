@@ -1,4 +1,6 @@
-﻿using ZY.FBG.Engine.Sagas;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace ZY.FBG.Engine.Agents
 {
@@ -11,34 +13,28 @@ namespace ZY.FBG.Engine.Agents
         {
         }
 
-        public static TeamAgent CreateNew(string id, string playGroundID )
+        public static TeamAgent CreateNew(string id, string teamName, IEnumerable<PlayerAgent> players)
         {
             TeamAgent team = new TeamAgent
             {
                 ID = id,
                 Grades = 0,
-                PlayGroundID = playGroundID
+                TeamName = teamName,
+                Players = players == null ? new List<PlayerAgent>() : players.ToList() 
             };
 
             return team;
         }
 
-        public void AddToGetGoalEvent()
+        private void TeamGetSocre()
         {
-            var playGround = Repository.Instance.GetById(PlayGroundID);
-            if (!(playGround is PlayGroundAgent)) return;
-
-            (playGround as PlayGroundAgent).OnTeamAScore += TeamGetSocre;
-            (playGround as PlayGroundAgent).OnTeamBScore += TeamGetSocre;
+            Grades++;
+            Debug.WriteLine("当前{0}队得分为：{1}",ID, Grades);
         }
 
-        private void TeamGetSocre(object sender, TeamGetGoalEventArgs e)
-        {
-            if (e.TeamID.Equals(ID))
-                Grades++;
-        }
-
-        public string PlayGroundID { get; private set; }
+        public string TeamName { get; private set; }
         public int Grades { get; private set; }
+
+        public List<PlayerAgent> Players { get; private set; }
     }
 }

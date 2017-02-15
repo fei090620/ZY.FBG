@@ -18,10 +18,6 @@ namespace ZY.FBG.Engine.Agents
     {
         private SoccerAgent()
         {
-            /* GameEngine.Instance是static成员，必然是在被调用之前初始化，且只初始化一次
-              SoccerAgent.Instance道理是一样的
-              所以这里的事件绑定只会绑定一次 */
-            GameEngine.Instance.OnGameTimeChanged += Instance_OnGameTimeChanged;
         }
 
         //id是必填项，否则返回null
@@ -37,12 +33,6 @@ namespace ZY.FBG.Engine.Agents
             };
 
             return soccer;
-        }
-
-        private void Instance_OnGameTimeChanged(object sender, GameTimeEventArgs e)
-        {
-            Status.UpdatePos();
-            Debug.WriteLine("({0},{1},{2})", Status.Pos.X, Status.Pos.Y, Status.Pos.Z);
         }
 
         public void UpdateMovementStatus(MovementStatus newMovementStatus)
