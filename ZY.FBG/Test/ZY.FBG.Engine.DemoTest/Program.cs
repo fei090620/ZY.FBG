@@ -5,6 +5,8 @@ using ZY.FBG.Engine.Agents;
 using ZY.FBG.Engine.Sagas;
 using ZY.FBG.Engine.Events;
 using System.Collections.Generic;
+using ZY.FBG.Engine.Server;
+using System.Diagnostics;
 
 namespace ZY.FBG.Engine.DemoTest
 {
@@ -61,6 +63,7 @@ namespace ZY.FBG.Engine.DemoTest
             #endregion
 
             #region Initial PlayGround
+            var playGroundID = "playGround-1111";
             IEnumerable<Point3D> groundaryPoses = new[] { new Point3D(0, 0), new Point3D(100, 0), new Point3D(100, 100), new Point3D(0, 100), new Point3D(0, 0) };
             Curve groundOutBoundary = new Curve(groundaryPoses);
             Area groundArea = Area.CreateNew(groundOutBoundary);
@@ -71,21 +74,37 @@ namespace ZY.FBG.Engine.DemoTest
             var teamBDoorOutBoundary = new Curve(teamBDoorPoses);
             var teamADoorArea = Area.CreateNew(teamADoorOutBoundary);
             var teamBDoorArea = Area.CreateNew(teamBDoorOutBoundary);
-            var ground = PlayGroundAgent.CreateNew(Guid.NewGuid().ToString(),
+            var ground = PlayGroundAgent.CreateNew(playGroundID,
                 groundArea, teamADoorArea, teamBDoorArea);
+            repository.Save(ground);
             #endregion
 
             #region Initial UpdateMoveStatusServer
-
-
+            var updateMoveServer = UpdateMoveStatusServer.Instance;
+            updateMoveServer.Register(soccerId);
+            updateMoveServer.Register(no1ATeamPlayerID);
+            updateMoveServer.Register(no2ATeamPlayerID);
+            updateMoveServer.Register(no1BTeamPlayerID);
+            updateMoveServer.Register(no2BTeamPlayerID);
             #endregion
 
             #region Intial CheckOutBoundaryServer
-
+            var checkOutBoundaryServer = CheckOutBoundaryServer.Instance;
+            checkOutBoundaryServer.Init(soccerId, playGroundID);
+            checkOutBoundaryServer.OnSoccerOutBoudary += (x,y)=> 
+            {
+                Debug.WriteLine("Soccer is out Boundary in {0} at {1}!",y.GameTime, y.OutBoundaryPos.ToString());
+            };
             #endregion
 
             #region Intial CheckGetGradeServer
-
+            var checkGetGradeServer = CheckGradeServer.Instance;
+            checkGetGradeServer.Init(soccerId, playGroundID);
+            checkGetGradeServer.OnGetGradeEvent += (x, y) => 
+            {
+                dynamic team = repository.GetById(y.GetGradeTeamID);
+                team.TeamGetSocre();
+            };
             #endregion
 
             #region Intial Commands

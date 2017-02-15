@@ -25,6 +25,18 @@ namespace ZY.FBG.Engine.Agents
             return ground;
         }
 
+        public void SetTeamAID(string teamAId)
+        {
+            TeamAID = teamAId;
+        }
+
+        public void SetTeamBID(string teamBId)
+        {
+            TeamBID = teamBId;
+        }
+
+        public string TeamAID { get; private set; }
+        public string TeamBID { get; private set; }
         public Area PlayGround { get; private set; }
         public Area TeamADoor { get; private set; }
         public Area TeamBDoor { get; private set; }

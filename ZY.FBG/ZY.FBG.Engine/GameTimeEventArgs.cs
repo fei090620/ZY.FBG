@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZY.FBG.Engine.Events
+namespace ZY.FBG.Engine
 {
     public class GameTimeEventArgs : EventArgs
     {

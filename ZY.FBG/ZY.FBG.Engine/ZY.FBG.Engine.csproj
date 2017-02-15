@@ -48,10 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agents\CheckOutBoundaryServer.cs" />
+    <Compile Include="GetGradeEventArgs.cs" />
+    <Compile Include="Server\CheckOutBoundaryServer.cs" />
     <Compile Include="Agents\DomainObject.cs" />
     <Compile Include="Agents\PlayGroundAgent.cs" />
-    <Compile Include="Agents\CheckGradeServer.cs" />
+    <Compile Include="Server\CheckGradeServer.cs" />
     <Compile Include="Events\Bus.cs" />
     <Compile Include="Sagas\ChangSoccerMoveStatusEvent.cs" />
     <Compile Include="Events\ICanHandleMessage.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Agents\MovementStatus.cs" />
     <Compile Include="Agents\TeamAgent.cs" />
     <Compile Include="Sagas\ShootSaga.cs" />
+    <Compile Include="Server\UpdateMoveStatusServer.cs" />
+    <Compile Include="SoccerOutBoundaryEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ZY.FBG.Engine.ruleset" />
