@@ -69,6 +69,7 @@
     <Compile Include="Agents\MovementStatus.cs" />
     <Compile Include="Agents\TeamAgent.cs" />
     <Compile Include="Sagas\ShootSaga.cs" />
+    <Compile Include="TeamGetGoalEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ZY.FBG.Engine.ruleset" />

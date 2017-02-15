@@ -8,8 +8,8 @@ namespace ZY.FBG.Engine.Agents
     public class PlayGroundAgent : DomainObject
     {
         public event EventHandler<GameTimeEventArgs> OnSoccerOutGround;
-        public event EventHandler<GameTimeEventArgs> OnTeamAScore;
-        public event EventHandler<GameTimeEventArgs> OnTeamBScore;
+        public event EventHandler<TeamGetGoalEventArgs> OnTeamAScore;
+        public event EventHandler<TeamGetGoalEventArgs> OnTeamBScore;
         private PlayGroundAgent()
         {
             GameEngine.Instance.OnGameTimeChanged += Instance_OnGameTimeChanged;
@@ -19,8 +19,10 @@ namespace ZY.FBG.Engine.Agents
         {
             if (Soccer == null) return;
             if (!PlayGround.IsInclude(Soccer.Status.Pos)) SoccerOutGround(e);
-            if (TeamADoor.IsInclude(Soccer.Status.Pos)) TeamAScored(e);
-            if (TeamBDoor.IsInclude(Soccer.Status.Pos)) TeamBScored(e);
+            if (TeamADoor.IsInclude(Soccer.Status.Pos)
+                && string.IsNullOrEmpty(TeamAID)) TeamAScored(new TeamGetGoalEventArgs(e.GameTime, TeamAID));
+            if (TeamBDoor.IsInclude(Soccer.Status.Pos)
+                && string.IsNullOrEmpty(TeamBID)) TeamBScored(new TeamGetGoalEventArgs(e.GameTime, TeamBID));
         }
 
         private void SoccerOutGround(GameTimeEventArgs e)
@@ -29,23 +31,25 @@ namespace ZY.FBG.Engine.Agents
             if (temp != null) temp(null, e);
         }
 
-        private void TeamAScored(GameTimeEventArgs e)
+        private void TeamAScored(TeamGetGoalEventArgs e)
         {
             var temp = Volatile.Read(ref OnTeamAScore);
             if (temp != null) temp(null, e);
         }
 
-        private void TeamBScored(GameTimeEventArgs e)
+        private void TeamBScored(TeamGetGoalEventArgs e)
         {
             var temp = Volatile.Read(ref OnTeamBScore);
             if (temp != null) temp(null, e);
         }
 
-        public static PlayGroundAgent CreateNew(string id, Area playGround, Area teamADoor, Area teamBDoor)
+        public static PlayGroundAgent CreateNew(string id,string teamAID, string teamBID, Area playGround, Area teamADoor, Area teamBDoor)
         {
             PlayGroundAgent ground = new PlayGroundAgent
             {
                 ID = id,
+                TeamAID = teamAID,
+                TeamBID = teamBID,
                 PlayGround = playGround,
                 TeamADoor = teamADoor,
                 TeamBDoor = teamBDoor
@@ -56,7 +60,8 @@ namespace ZY.FBG.Engine.Agents
 
 
 
-
+        public string TeamAID { get; private set; }
+        public string TeamBID { get; private set; }
         public SoccerAgent Soccer { get; set; }
         public Area PlayGround { get; private set; }
         public Area TeamADoor { get; private set; }

@@ -24,3 +24,4 @@ D:\ADCC.Code\Learning\FBGame\ZY.FBG\ZY.FBG.PCApp\bin\Debug\ZY.FBG.PCApp.exe
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\ZY.FBG.PCApp\bin\Debug\ZY.FBG.PCApp.pdb
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\ZY.FBG.PCApp\obj\Debug\ZY.FBG.PCApp.Properties.Resources.resources
 D:\ADCC.Code\Learning\FBGame\ZY.FBG\ZY.FBG.PCApp\obj\Debug\ZY.FBG.PCApp.csproj.GenerateResource.Cache
+D:\ADCC.Code\Learning\FBGame\ZY.FBG\ZY.FBG.PCApp\obj\Debug\ZY.FBG.PCApp.csprojResolveAssemblyReference.cache
