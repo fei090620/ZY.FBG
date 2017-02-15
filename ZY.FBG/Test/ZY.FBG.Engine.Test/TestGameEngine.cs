@@ -1,8 +1,7 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ZY.FBG.Engine;
 using System.Threading;
 using ADCC.Common.Datas;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZY.FBG.Engine.Agents;
 
 namespace ZY.FBG.Engine.Test
@@ -11,13 +10,14 @@ namespace ZY.FBG.Engine.Test
     public class TestGameEngine
     {
         private GameEngine _engine;
+
         [TestInitialize]
         public void Init()
-        {  
+        {
             //游戏引擎只有一个
             _engine = GameEngine.Instance;
             //设置游戏时长为1分钟
-            int gameTimeOfMiniutes = 1;
+            var gameTimeOfMiniutes = 1;
             _engine.SetGameTime(gameTimeOfMiniutes);
         }
 
@@ -56,9 +56,9 @@ namespace ZY.FBG.Engine.Test
         [TestMethod]
         public void Test_when_game_run_then_update_soccer_status()
         {
-            SoccerAgent soccer = SoccerAgent.CreateNew(Guid.NewGuid().ToString());
+            var soccer = SoccerAgent.CreateNew(Guid.NewGuid().ToString());
             _engine.Start();
-            Assert.AreNotEqual(soccer.Status.Pos, new Point3D(0,0,0));
+            Assert.AreNotEqual(soccer.Status.Pos, new Point3D(0, 0, 0));
         }
     }
 }

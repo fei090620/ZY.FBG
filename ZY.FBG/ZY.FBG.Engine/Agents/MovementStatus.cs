@@ -21,7 +21,7 @@ namespace ZY.FBG.Engine
         {
             if (Direction == null || Speed == null)
                 return;
-            
+
             Pos = Pos.GetNextPoint((int)Direction, (int)Speed);
         }
 
@@ -44,7 +44,7 @@ namespace ZY.FBG.Engine
             int result = 0;
             result ^= Speed == null ? 0 : Speed.GetHashCode();
             result ^= Direction == null ? 0 : Direction.GetHashCode();
-            result ^= Pos == null ? 0 : Pos.GetHashCode();
+            result ^= Pos?.GetHashCode() ?? 0;
 
             return result;
         }

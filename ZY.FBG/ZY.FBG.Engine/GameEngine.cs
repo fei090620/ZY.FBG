@@ -19,7 +19,6 @@ namespace ZY.FBG.Engine
         private DateTime _endTime;
         private ManualResetEvent _manualEvent;
         private bool _flag = false;
-
         private GameEngine()
         {
             Status = GameStatus.UnStart;
