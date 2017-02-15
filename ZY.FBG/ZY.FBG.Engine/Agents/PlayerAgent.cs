@@ -12,7 +12,6 @@ namespace ZY.FBG.Engine.Agents
     {
         protected PlayerAgent()
         {
-            GameEngine.Instance.OnGameTimeChanged += Instance_OnGameTimeChanged;
         }
 
         public static PlayerAgent CreateNew(string id, MovementStatus movementStatus = null, string teamId = null)
@@ -28,12 +27,6 @@ namespace ZY.FBG.Engine.Agents
             };
 
             return player;
-        }
-
-        private void Instance_OnGameTimeChanged(object sender, GameTimeEventArgs e)
-        {
-            Status.UpdatePos();
-            Debug.WriteLine("({0},{1},{2})", Status.Pos.X, Status.Pos.Y, Status.Pos.Z);
         }
 
         public MovementStatus Status { get; private set; }
