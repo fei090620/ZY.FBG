@@ -13,6 +13,8 @@ namespace ZY.FBG.Engine.Sagas
             = new Dictionary<string, PlayerAgent>();
         private Dictionary<string, TeamAgent> _teams 
             = new Dictionary<string, TeamAgent>();
+        private Dictionary<string, PlayGroundAgent> _playGrounds
+            = new Dictionary<string, PlayGroundAgent>();
 
         public DomainObject GetById(string id)
         {
@@ -24,6 +26,9 @@ namespace ZY.FBG.Engine.Sagas
 
             if (_teams.ContainsKey(id))
                 return _teams[id];
+
+            if (_playGrounds.ContainsKey(id))
+                return _playGrounds[id];
 
             return null;
         }
@@ -43,6 +48,9 @@ namespace ZY.FBG.Engine.Sagas
 
             if (domainObject is TeamAgent && !_teams.ContainsKey(domainObject.ID))
                 _teams.Add(domainObject.ID, domainObject as TeamAgent);
+
+            if (domainObject is PlayGroundAgent && !_playGrounds.ContainsKey(domainObject.ID))
+                _playGrounds.Add(domainObject.ID, domainObject as PlayGroundAgent);
         }
 
         public void Update(DomainObject newDomainObject)
@@ -61,6 +69,10 @@ namespace ZY.FBG.Engine.Sagas
             if (newDomainObject is TeamAgent
                 && _teams.ContainsKey(newDomainObject.ID))
                 _teams[newDomainObject.ID] = newDomainObject as TeamAgent;
+
+            if (newDomainObject is PlayGroundAgent
+                && _playGrounds.ContainsKey(newDomainObject.ID))
+                _playGrounds[newDomainObject.ID] = newDomainObject as PlayGroundAgent;
         }
     }
 }

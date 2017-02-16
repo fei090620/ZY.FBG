@@ -1,4 +1,5 @@
-﻿using ADCC.Common.Datas;
+﻿using System.Diagnostics;
+using ADCC.Common.Datas;
 
 namespace ZY.FBG.Engine
 {
@@ -23,6 +24,7 @@ namespace ZY.FBG.Engine
                 return;
 
             Pos = Pos.GetNextPoint((int)Direction, (int)Speed);
+            Debug.WriteLine("Pos is {0}:{1}", Pos.X, Pos.Y);
         }
 
         public override bool Equals(object obj)
