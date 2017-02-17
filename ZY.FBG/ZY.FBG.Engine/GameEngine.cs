@@ -15,10 +15,9 @@ namespace ZY.FBG.Engine
         public string GameTime { get; private set; }
         public event EventHandler<GameTimeEventArgs> OnGameTimeChanged;
         private DateTime _time;
-        private Timer _timer;
         private DateTime _endTime;
-        private ManualResetEvent _manualEvent;
-        private bool _flag = false;
+        public bool GameFlag { get; private set; }
+
         private GameEngine()
         {
             Status = GameStatus.UnStart;
@@ -36,6 +35,11 @@ namespace ZY.FBG.Engine
             GameTimePeriod = gameTimeOfMiniutes;
         }
 
+        public void ChangeGameFlagTo(bool newFlag)
+        {
+            GameFlag = newFlag;
+        }
+
         /// <summary>
         /// 开始比赛
         /// </summary>
@@ -45,40 +49,47 @@ namespace ZY.FBG.Engine
             _time = new DateTime(0, DateTimeKind.Utc);
             //初始化比赛状态为“Inning”
             Status = GameStatus.Inning;
+            GameFlag = false;
             //初始化比赛结束时间
             _endTime = _time.AddMinutes(GameTimePeriod);
-            //初始化信号事件
-            _manualEvent = new ManualResetEvent(false);
-            //初始化定时器
-            _timer = new Timer(x=>RunGame(), null, 0, 1000);
+            //运行定时器
+            RunTimer(RunGame, 1000);
+        }
+
+        private void RunTimer(Action<int> runGame, int period)
+        {
+            Thread thread = new Thread(x=>runGame(period));
+            thread.IsBackground = false;
+            thread.Start();
         }
 
         /// <summary>
         /// 运行游戏
         /// </summary>
-        private void RunGame()
+        private void RunGame(int period)
         {
-            Thread.CurrentThread.IsBackground = false;
-            if (_flag)
-                return;
-
-            lock (_lockObject)
+            while (true)
             {
-                if (string.CompareOrdinal(_time.ToLongTimeString(), _endTime.ToLongTimeString()) == 0)
+                Thread.Sleep(period);
+                if (GameFlag)
+                    return;
+
+                lock (_lockObject)
                 {
-                    _timer.Dispose();
-                    _manualEvent.Set();
-                    _flag = true;
-                    Status = GameStatus.Over;
+                    if (string.CompareOrdinal(_time.ToLongTimeString(), _endTime.ToLongTimeString()) == 0)
+                    {
+                        GameFlag = true;
+                        Status = GameStatus.Over;
+                    }
+
+                    //每一秒更新一次
+                    _time = _time.AddSeconds(1);
                 }
 
-                //每一秒更新一次
-                _time = _time.AddSeconds(1);
+                GameTime = FormateTime(_time);
+                GameTimeChanged(new GameTimeEventArgs(GameTime));
+                Debug.WriteLine(GameTime);
             }
-
-            GameTime = FormateTime(_time);
-            GameTimeChanged(new GameTimeEventArgs(GameTime));
-            Debug.WriteLine(GameTime);
         }
 
         /// <summary>

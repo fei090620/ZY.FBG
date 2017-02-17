@@ -91,8 +91,9 @@ namespace ZY.FBG.Engine.DemoTest
             #region Intial CheckOutBoundaryServer
             var checkOutBoundaryServer = CheckOutBoundaryServer.Instance;
             checkOutBoundaryServer.Init(soccerId, playGroundID);
-            checkOutBoundaryServer.OnSoccerOutBoudary += (x,y)=> 
+            checkOutBoundaryServer.OnSoccerOutBoudary += (x,y)=>
             {
+                game.ChangeGameFlagTo(true);
                 Debug.WriteLine("Soccer is out Boundary in {0} at {1}!",y.GameTime, y.OutBoundaryPos.ToString());
             };
             #endregion
@@ -102,6 +103,7 @@ namespace ZY.FBG.Engine.DemoTest
             checkGetGradeServer.Init(soccerId, playGroundID);
             checkGetGradeServer.OnGetGradeEvent += (x, y) => 
             {
+                game.ChangeGameFlagTo(true);
                 dynamic team = repository.GetById(y.GetGradeTeamID);
                 team.TeamGetSocre();
             };

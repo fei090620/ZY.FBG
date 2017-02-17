@@ -18,8 +18,15 @@ namespace ZY.FBG.Engine.Server
             var soccer = Repository.Instance.GetById(_soccerID) as SoccerAgent;
             var playGround = Repository.Instance.GetById(_playerGroundID) as PlayGroundAgent;
             if (soccer == null || playGround == null) return;
-            if (playGround.TeamADoor.IsInclude(soccer.Status.Pos)) GetGrade(new GetGradeEventArgs(e.GameTime, playGround.TeamAID));
-            if (playGround.TeamBDoor.IsInclude(soccer.Status.Pos)) GetGrade(new GetGradeEventArgs(e.GameTime, playGround.TeamBID));
+            if (playGround.TeamADoor.IsInclude(soccer.Status.Pos))
+            {
+                GetGrade(new GetGradeEventArgs(e.GameTime, playGround.TeamAID));
+                return;
+            }
+            if (playGround.TeamBDoor.IsInclude(soccer.Status.Pos))
+            {
+                GetGrade(new GetGradeEventArgs(e.GameTime, playGround.TeamBID));
+            }
         }
 
         private void GetGrade(GetGradeEventArgs e)

@@ -36,7 +36,7 @@
             开始比赛
             </summary>
         </member>
-        <member name="M:ZY.FBG.Engine.GameEngine.RunGame">
+        <member name="M:ZY.FBG.Engine.GameEngine.RunGame(System.Int32)">
             <summary>
             运行游戏
             </summary>
