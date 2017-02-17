@@ -12,7 +12,7 @@ namespace ZY.FBG.Engine.Sagas
         {
             var cmd = new ChangSoccerMoveStatusEvent(message.SoccerID, message.ShootParameters);
             cmd.ID = message.ID;
-            Debug.WriteLine("Saga is started by shoot command!");
+            Debug.WriteLine("shoot command is start!");
             Bus.Send(cmd);
         }
 
@@ -27,7 +27,7 @@ namespace ZY.FBG.Engine.Sagas
 
             soccer.UpdateMovementStatus(message.MoveStatus);
             _isCompleted = true;
-            Debug.WriteLine("Saga is completed by changeSoccerStatusEvent!");
+            Debug.WriteLine("soccer move status is updated by shoot command!");
         }
     }
 }

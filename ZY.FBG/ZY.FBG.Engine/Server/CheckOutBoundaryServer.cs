@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using ADCC.Common.Datas;
 using ZY.FBG.Engine.Agents;
 using ZY.FBG.Engine.Sagas;
 
@@ -16,14 +17,19 @@ namespace ZY.FBG.Engine.Server
 
         private string _soccerID;
         private string _playerGroundID;
+        private Point3D _lastInBoundaryPos;
 
         private void Instance_OnGameTimeChanged(object sender, GameTimeEventArgs e)
         {
             var soccer = Repository.Instance.GetById(_soccerID) as SoccerAgent;
             var playGround = Repository.Instance.GetById(_playerGroundID) as PlayGroundAgent;
             if (soccer == null || playGround == null) return;
-            if (playGround.PlayGround.IsInclude(soccer.Status.Pos)) return;
-            SoccerOutBoundaried(new SoccerOutBoundaryEventArgs(e.GameTime, soccer.Status.Pos));
+            if (playGround.PlayGround.IsInclude(soccer.Status.Pos))
+            {
+                _lastInBoundaryPos = soccer.Status.Pos;
+                return;
+            }
+            SoccerOutBoundaried(new SoccerOutBoundaryEventArgs(e.GameTime, soccer.Status.Pos, _lastInBoundaryPos));
         }
 
         private void SoccerOutBoundaried(SoccerOutBoundaryEventArgs e)
