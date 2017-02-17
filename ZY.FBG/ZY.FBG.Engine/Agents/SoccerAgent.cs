@@ -29,7 +29,7 @@ namespace ZY.FBG.Engine.Agents
             SoccerAgent soccer = new SoccerAgent
             {
                 ID = id,
-                Status = movementStatus == null ? new MovementStatus(0, 0, null) : movementStatus
+                Status = movementStatus == null ? new MovementStatus(new Point3D(), 0, 0) : movementStatus
             };
 
             return soccer;

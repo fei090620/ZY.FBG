@@ -37,7 +37,10 @@ namespace ZY.FBG.Engine
 
         public void ChangeGameFlagTo(bool newFlag)
         {
-            GameFlag = newFlag;
+            lock (this)
+            {
+                GameFlag = newFlag;
+            }
         }
 
         /// <summary>
@@ -72,7 +75,11 @@ namespace ZY.FBG.Engine
             {
                 Thread.Sleep(period);
                 if (GameFlag)
-                    return;
+                    continue;
+
+                GameTime = FormateTime(_time);
+                GameTimeChanged(new GameTimeEventArgs(GameTime));
+                Debug.WriteLine(GameTime);
 
                 lock (_lockObject)
                 {
@@ -80,15 +87,12 @@ namespace ZY.FBG.Engine
                     {
                         GameFlag = true;
                         Status = GameStatus.Over;
+                        Debug.WriteLine("Time is up,Game Over!");
                     }
 
                     //每一秒更新一次
                     _time = _time.AddSeconds(1);
                 }
-
-                GameTime = FormateTime(_time);
-                GameTimeChanged(new GameTimeEventArgs(GameTime));
-                Debug.WriteLine(GameTime);
             }
         }
 

@@ -1,16 +1,17 @@
 ﻿using System.Diagnostics;
 using ADCC.Common.Datas;
+using ADCC.Common.Tools;
 
 namespace ZY.FBG.Engine
 {
     public class MovementStatus 
     {
-        public MovementStatus(int? speed = null, 
-                              int? direction = null, 
-                              Point3D pos = null)
+        public MovementStatus(Point3D pos,
+                              int? speed = null, 
+                              int? direction = null)
         {
             Speed = speed;
-            Direction = direction;
+            Direction = (int)((double)direction).ToRadian();
             Pos = pos;
         }
 
@@ -20,7 +21,8 @@ namespace ZY.FBG.Engine
 
         public void UpdatePos()
         {
-            if (Direction == null || Speed == null)
+            if (Direction == null 
+                || Speed == null)
                 return;
 
             Pos = Pos.GetNextPoint((int)Direction, (int)Speed);

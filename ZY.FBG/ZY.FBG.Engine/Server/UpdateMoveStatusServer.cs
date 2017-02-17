@@ -18,12 +18,15 @@ namespace ZY.FBG.Engine.Server
         private void Instance_OnGameTimeChanged(object sender, GameTimeEventArgs e)
         {
             if (!_updateObjectIds.Any()) return;
-            _updateObjectIds.ForEach(x=> 
+            lock (e)
             {
-                dynamic moveObject = Repository.Instance.GetById(x);
-                moveObject.Status.UpdatePos();
-                Repository.Instance.Update(moveObject);
-            }); 
+                _updateObjectIds.ForEach(x =>
+                {
+                    dynamic moveObject = Repository.Instance.GetById(x);
+                    moveObject.Status.UpdatePos();
+                    Repository.Instance.Update(moveObject);
+                });
+            }
         }
 
         public void Register(string moveObjectID)

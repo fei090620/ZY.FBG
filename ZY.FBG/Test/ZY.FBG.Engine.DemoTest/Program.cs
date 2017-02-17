@@ -25,7 +25,7 @@ namespace ZY.FBG.Engine.DemoTest
             var soccerInitialPos = new Point3D(1, 1);
             var soccerInitialDirection = 0;
             var soccerInitialSpeed = 0;
-            var soccer = SoccerAgent.CreateNew(soccerId, new MovementStatus(soccerInitialSpeed, soccerInitialDirection, soccerInitialPos));
+            var soccer = SoccerAgent.CreateNew(soccerId, new MovementStatus(soccerInitialPos, soccerInitialSpeed, soccerInitialDirection));
             repository.Save(soccer);
             #endregion
 
@@ -48,10 +48,10 @@ namespace ZY.FBG.Engine.DemoTest
             var no2ATeamPlayerDirection = 0;
             var no1BTeamPlayerDirection = 0;
             var no2BTeamPlayerDirection = 0;
-            var no1ATeamPlayer = PlayerAgent.CreateNew(no1ATeamPlayerID, new MovementStatus(no1ATeamPlayerSpeed, no1ATeamPlayerDirection, no1ATeamPlayerPos), aTeamID);
-            var no2ATeamPlayer = PlayerAgent.CreateNew(no2ATeamPlayerID, new MovementStatus(no2ATeamPlayerSpeed, no2ATeamPlayerDirection, no2ATeamPlayerPos), aTeamID);
-            var no1BTeamPlayer = PlayerAgent.CreateNew(no1BTeamPlayerID, new MovementStatus(no1BTeamPlayerSpeed, no1BTeamPlayerDirection, no1BTeamPlayerPos), bTeamID);
-            var no2BTeamPlayer = PlayerAgent.CreateNew(no2BTeamPlayerID, new MovementStatus(no2BTeamPlayerSpeed, no2BTeamPlayerDirection, no2BTeamPlayerPos), bTeamID);
+            var no1ATeamPlayer = PlayerAgent.CreateNew(no1ATeamPlayerID, new MovementStatus(no1ATeamPlayerPos, no1ATeamPlayerSpeed, no1ATeamPlayerDirection), aTeamID);
+            var no2ATeamPlayer = PlayerAgent.CreateNew(no2ATeamPlayerID, new MovementStatus(no2ATeamPlayerPos, no2ATeamPlayerSpeed, no2ATeamPlayerDirection), aTeamID);
+            var no1BTeamPlayer = PlayerAgent.CreateNew(no1BTeamPlayerID, new MovementStatus(no1BTeamPlayerPos, no1BTeamPlayerSpeed, no1BTeamPlayerDirection), bTeamID);
+            var no2BTeamPlayer = PlayerAgent.CreateNew(no2BTeamPlayerID, new MovementStatus(no2BTeamPlayerPos, no2BTeamPlayerSpeed, no2BTeamPlayerDirection), bTeamID);
             var teamA = TeamAgent.CreateNew(aTeamID, "ATeam", new[] {no1ATeamPlayer, no2ATeamPlayer });
             var teamB = TeamAgent.CreateNew(bTeamID, "BTeam", new[] { no1BTeamPlayer, no2BTeamPlayer });
             repository.Save(no1ATeamPlayer);
@@ -76,6 +76,8 @@ namespace ZY.FBG.Engine.DemoTest
             var teamBDoorArea = Area.CreateNew(teamBDoorOutBoundary);
             var ground = PlayGroundAgent.CreateNew(playGroundID,
                 groundArea, teamADoorArea, teamBDoorArea);
+            ground.SetTeamAID(aTeamID);
+            ground.SetTeamBID(bTeamID);
             repository.Save(ground);
             #endregion
 
@@ -91,9 +93,11 @@ namespace ZY.FBG.Engine.DemoTest
             #region Intial CheckOutBoundaryServer
             var checkOutBoundaryServer = CheckOutBoundaryServer.Instance;
             checkOutBoundaryServer.Init(soccerId, playGroundID);
+            Point3D outBoundaryPos = null;
             checkOutBoundaryServer.OnSoccerOutBoudary += (x,y)=>
             {
                 game.ChangeGameFlagTo(true);
+                outBoundaryPos = y.InBoundaryPos;
                 Debug.WriteLine("Soccer is out Boundary in {0} at {1}!",y.GameTime, y.OutBoundaryPos.ToString());
             };
             #endregion
@@ -111,16 +115,31 @@ namespace ZY.FBG.Engine.DemoTest
 
             #region Intial Commands
             Bus.RegesteSaga<ShootCommand, ShootSaga>();
+            Bus.RegesteSaga<ServeCommand, ServeSaga>();
             #endregion
 
             #region Play Game
             game.Start();
             Thread.Sleep(5 * 1000);
-            var shoot = new ShootCommand(no1ATeamPlayerID, aTeamID, soccerId, new MovementStatus(10, 3, no1ATeamPlayerPos))
+            var shoot = new ShootCommand(no1ATeamPlayerID, aTeamID, soccerId, new MovementStatus(no1ATeamPlayerPos, 10, 3))
             {
                 ID = Guid.NewGuid().ToString()
             };
             Bus.Send(shoot);
+            Thread.Sleep(5000);
+            bool isServed = false;
+            while (!isServed)
+            {
+                if (outBoundaryPos != null)
+                {
+                    var serve = new ServeCommand(soccerId, new MovementStatus(outBoundaryPos, 5, 160))
+                    {
+                        ID = Guid.NewGuid().ToString()
+                    };
+                    Bus.Send(serve);
+                    isServed = true;
+                }
+            }
             #endregion
 
             Console.ReadKey();

@@ -18,7 +18,7 @@ namespace ZY.FBG.Engine.Sagas
 
         public DomainObject GetById(string id)
         {
-            if (_soccers.ContainsKey(id))
+           if (_soccers.ContainsKey(id))
                 return _soccers[id];
 
             if (_players.ContainsKey(id))

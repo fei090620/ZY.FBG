@@ -26,7 +26,7 @@ namespace ZY.FBG.Engine.Agents
             return team;
         }
 
-        private void TeamGetSocre()
+        public void TeamGetSocre()
         {
             Grades++;
             Debug.WriteLine("当前{0}队得分为：{1}",ID, Grades);

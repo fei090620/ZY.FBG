@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="GetGradeEventArgs.cs" />
     <Compile Include="Sagas\GamePauseEvent.cs" />
+    <Compile Include="Sagas\ServeCommand.cs" />
+    <Compile Include="Sagas\ServeSaga.cs" />
     <Compile Include="Server\CheckOutBoundaryServer.cs" />
     <Compile Include="Agents\DomainObject.cs" />
     <Compile Include="Agents\PlayGroundAgent.cs" />
