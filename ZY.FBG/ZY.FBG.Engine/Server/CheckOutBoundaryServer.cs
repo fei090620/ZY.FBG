@@ -19,10 +19,11 @@ namespace ZY.FBG.Engine.Server
 
         private void Instance_OnGameTimeChanged(object sender, GameTimeEventArgs e)
         {
-            var soccer = Repository.Instance.GetById(_soccerID);
-            var playGround = Repository.Instance.GetById(_playerGroundID);
+            var soccer = Repository.Instance.GetById(_soccerID) as SoccerAgent;
+            var playGround = Repository.Instance.GetById(_playerGroundID) as PlayGroundAgent;
             if (soccer == null || playGround == null) return;
-            SoccerOutBoundaried(new SoccerOutBoundaryEventArgs(e.GameTime, (soccer as SoccerAgent).Status.Pos));
+            if (playGround.PlayGround.IsInclude(soccer.Status.Pos)) return;
+            SoccerOutBoundaried(new SoccerOutBoundaryEventArgs(e.GameTime, soccer.Status.Pos));
         }
 
         private void SoccerOutBoundaried(SoccerOutBoundaryEventArgs e)
